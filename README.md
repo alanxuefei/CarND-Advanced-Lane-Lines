@@ -93,5 +93,41 @@ The cv2.undistort() function removes image distortion using camera matrix and di
 
 ## Use color transforms, gradients, etc., to create a thresholded binary image.
 ### color transforms
-### gradients
+
+### Threshold x gradient
+The cv.Sobel function can calculate a directional change (image gradient) in intensity or color based on the first order derivatives. Taking the gradient in the x direction emphasizes edges closer to vertical. Alternatively, taking the gradient in the y direction emphasizes edges closer to horizontal.
+
+### S channel (HLS space)
+Red-green-blue（RGB) color space can be transformed into Hue-lightness-saturation(HLS) color space. HLS space help detect lane lines of different colors and under different lighting conditions. Compared to H and L channels, S channel is more robust to detect different colors of lane lines under varying degrees of daylight and shadow.
+
 ### Combining Thresholds
+The output is shown below. The final image color_binary is a combination of binary thresholding the S channel (HLS) and binary thresholding the result of applying the Sobel operator in the x direction on the original image.
+
+<table border="1">
+<tr>
+<td>Original</td>
+<td>Threshold x gradient</td>
+</tr>
+<tr>
+<td><img src="test_images/test5.jpg" style="width:304px;height:228px;"></td>
+<td><img src="images/Threshold_x_gradient.png" style="width:304px;height:228px;"></td>
+</tr>
+<tr>
+<td>Threshold saturation</td>
+<td>Combining Thresholds</td>
+</tr>
+<tr>
+<td><img src="images/Threshold_saturation.png" style="width:304px;height:228px;"></td>
+<td><img src="images/Combining_Thresholds.png" style="width:304px;height:228px;"></td>
+</tr>
+</table>
+
+## Apply a perspective transform to rectify binary image ("birds-eye view").
+Eye View transformation technique is to generate a top view perspective of a road
+
+## Detect lane pixels and fit to find the lane boundary.
+
+## Determine the curvature of the lane and vehicle position with respect to center.
+
+
+ that let’s us view a lane from above; this will be useful for calculating the lane curvature later on. Aside from creating a bird’s eye view representation of an image, a perspective transform can also be used for all kinds of different view points.
