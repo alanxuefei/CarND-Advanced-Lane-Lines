@@ -2,7 +2,7 @@
 [![Udacity - Self-Driving Car NanoDegree](https://s3.amazonaws.com/udacity-sdc/github/shield-carnd.svg)](http://www.udacity.com/drive)
 
 
-In this project, your goal is to write a software pipeline to identify the lane boundaries in a video, but the main output or product we want you to create is a detailed writeup of the project.  Check out the [writeup template](https://github.com/udacity/CarND-Advanced-Lane-Lines/blob/master/writeup_template.md) for this project and use it as a starting point for creating your own writeup.  
+In this project, the goal is to write a software pipeline to identify the lane boundaries in a video.
 
 Creating a great writeup:
 ---
@@ -86,8 +86,8 @@ The cv2.undistort() function removes image distortion using camera matrix and di
 <td>Undistorted</td>
 </tr>
 <tr>
-<td><img src="test_images/straight_lines1.jpg" style="width:304px;height:228px;"></td>
-<td><img src="output_images\undistorted\straight_lines1.jpg" style="width:304px;height:228px;"></td>
+<td><img src="test_images/test2.jpg" style="width:304px;height:228px;"></td>
+<td><img src="process_image/test2_step_1_undistort.jpg" style="width:304px;height:228px;"></td>
 </tr>
 </table>
 
@@ -103,31 +103,27 @@ Red-green-blue（RGB) color space can be transformed into Hue-lightness-saturati
 ### Combining Thresholds
 The output is shown below. The final image color_binary is a combination of binary thresholding the S channel (HLS) and binary thresholding the result of applying the Sobel operator in the x direction on the original image.
 
-<table border="1">
-<tr>
-<td>Original</td>
-<td>Threshold x gradient</td>
-</tr>
-<tr>
-<td><img src="test_images/test5.jpg" style="width:304px;height:228px;"></td>
-<td><img src="images/Threshold_x_gradient.png" style="width:304px;height:228px;"></td>
-</tr>
-<tr>
-<td>Threshold saturation</td>
-<td>Combining Thresholds</td>
-</tr>
-<tr>
-<td><img src="images/Threshold_saturation.png" style="width:304px;height:228px;"></td>
-<td><img src="images/Combining_Thresholds.png" style="width:304px;height:228px;"></td>
-</tr>
-</table>
+ <img src="process_image/test2_step2_Combining_Thresholds1.jpg" style="width:800px;height:230px;">
+ <img src="process_image/test2_step2_Combining_Thresholds2.jpg" style="width:800px;height:230px;">
 
 ## Apply a perspective transform to rectify binary image ("birds-eye view").
 Eye View transformation technique is to generate a top view perspective of a road
 
+ <img src="process_image/test2_step3_binary_birdView.jpg" style="width:800px;height:280px;">
+
 ## Detect lane pixels and fit to find the lane boundary.
+
+ <img src="process_image/test2_step3_birdView_histogram.jpg" style="width:400px;height:560px;">
 
 ## Determine the curvature of the lane and vehicle position with respect to center.
 
 
+ <img src="process_image/test2_step4_curvature_position.jpg" style="width:400px;height:560px;">
+
  that let’s us view a lane from above; this will be useful for calculating the lane curvature later on. Aside from creating a bird’s eye view representation of an image, a perspective transform can also be used for all kinds of different view points.
+
+## Warp the detected lane boundaries back onto the original image.  
+<img src="process_image/test2_step5_warp_back.jpg" style="width:400px;height:560px;">
+## Output visual display of the lane boundaries and numerical estimation of lane curvature and vehicle position.
+
+<img src="process_image/test2_step6_visual_display.jpg" style="width:400px;height:260px;">
