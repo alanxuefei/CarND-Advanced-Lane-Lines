@@ -107,23 +107,26 @@ The output is shown below. The final image color_binary is a combination of bina
  <img src="process_image/test2_step2_Combining_Thresholds2.jpg" style="width:800px;height:230px;">
 
 ## Apply a perspective transform to rectify binary image ("birds-eye view").
-Eye View transformation technique is to generate a top view perspective of a road
+Eye View transformation technique is to generate a top view perspective of a road. cv2.getPerspectiveTransform calculates a perspective transform from four pairs of the corresponding points.
 
  <img src="process_image/test2_step3_binary_birdView.jpg" style="width:800px;height:280px;">
 
 ## Detect lane pixels and fit to find the lane boundary.
+ The lanes poisons can be identified by a histogram along all the columns in the lower half of the image.
 
  <img src="process_image/test2_step3_birdView_histogram.jpg" style="width:400px;height:560px;">
 
 ## Determine the curvature of the lane and vehicle position with respect to center.
-
+Sliding window can start from the base of the lane lines across y axis. As the sliding window moves up, the mean of x value of all points in the sliding window can be used as the base of the next sliding window. 9 windows are used for each lines, therefore 9 points are generated to represent a line. the curvature of the lane can calculated by curve fitting technique.       
 
  <img src="process_image/test2_step4_curvature_position.jpg" style="width:400px;height:560px;">
 
- that let’s us view a lane from above; this will be useful for calculating the lane curvature later on. Aside from creating a bird’s eye view representation of an image, a perspective transform can also be used for all kinds of different view points.
 
 ## Warp the detected lane boundaries back onto the original image.  
-<img src="process_image/test2_step5_warp_back.jpg" style="width:400px;height:560px;">
-## Output visual display of the lane boundaries and numerical estimation of lane curvature and vehicle position.
+As discussed before, cv2.getPerspectiveTransform is used to transform the detected lane boundaries back onto the original image
 
+<img src="process_image/test2_step5_warp_back.jpg" style="width:400px;height:560px;">
+
+## Output visual display of the lane boundaries and numerical estimation of lane curvature and vehicle position.
+Finally lane curvature and vehicle position are added into the picture.
 <img src="process_image/test2_step6_visual_display.jpg" style="width:400px;height:260px;">
