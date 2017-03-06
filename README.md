@@ -92,41 +92,44 @@ The cv2.undistort() function removes image distortion using camera matrix and di
 </table>
 
 ## Use color transforms, gradients, etc., to create a thresholded binary image.
-### color transforms
 
-### Threshold x gradient
+##### Threshold x gradient
 The cv.Sobel function can calculate a directional change (image gradient) in intensity or color based on the first order derivatives. Taking the gradient in the x direction emphasizes edges closer to vertical. Alternatively, taking the gradient in the y direction emphasizes edges closer to horizontal.
 
-### S channel (HLS space)
+##### S channel (HLS space)
 Red-green-blue（RGB) color space can be transformed into Hue-lightness-saturation(HLS) color space. HLS space help detect lane lines of different colors and under different lighting conditions. Compared to H and L channels, S channel is more robust to detect different colors of lane lines under varying degrees of daylight and shadow.
 
-### Combining Thresholds
+##### Combining Thresholds
 The output is shown below. The final image color_binary is a combination of binary thresholding the S channel (HLS) and binary thresholding the result of applying the Sobel operator in the x direction on the original image.
 
  <img src="process_image/test2_step2_Combining_Thresholds1.jpg" style="width:800px;height:230px;">
  <img src="process_image/test2_step2_Combining_Thresholds2.jpg" style="width:800px;height:230px;">
 
-## Apply a perspective transform to rectify binary image ("birds-eye view").
+#### Apply a perspective transform to rectify binary image ("birds-eye view").
 Eye View transformation technique is to generate a top view perspective of a road. cv2.getPerspectiveTransform calculates a perspective transform from four pairs of the corresponding points.
 
  <img src="process_image/test2_step3_binary_birdView.jpg" style="width:800px;height:280px;">
 
-## Detect lane pixels and fit to find the lane boundary.
+#### Detect lane pixels and fit to find the lane boundary.
  The lanes poisons can be identified by a histogram along all the columns in the lower half of the image.
 
  <img src="process_image/test2_step3_birdView_histogram.jpg" style="width:400px;height:560px;">
 
-## Determine the curvature of the lane and vehicle position with respect to center.
+#### Determine the curvature of the lane and vehicle position with respect to center.
 Sliding window can start from the base of the lane lines across y axis. As the sliding window moves up, the mean of x value of all points in the sliding window can be used as the base of the next sliding window. 9 windows are used for each lines, therefore 9 points are generated to represent a line. the curvature of the lane can calculated by curve fitting technique.       
 
  <img src="process_image/test2_step4_curvature_position.jpg" style="width:400px;height:560px;">
 
 
-## Warp the detected lane boundaries back onto the original image.  
+#### Warp the detected lane boundaries back onto the original image.  
 As discussed before, cv2.getPerspectiveTransform is used to transform the detected lane boundaries back onto the original image
 
 <img src="process_image/test2_step5_warp_back.jpg" style="width:400px;height:560px;">
 
-## Output visual display of the lane boundaries and numerical estimation of lane curvature and vehicle position.
+#### Output visual display of the lane boundaries and numerical estimation of lane curvature and vehicle position.
 Finally lane curvature and vehicle position are added into the picture.
+
 <img src="process_image/test2_step6_visual_display.jpg" style="width:400px;height:260px;">
+
+## Result Video
+<img src="processed_project_video.gif" style="width:400px;height:230px;">
