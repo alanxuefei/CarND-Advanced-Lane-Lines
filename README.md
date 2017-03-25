@@ -98,7 +98,8 @@ Finally lane curvature and vehicle position are added into the picture.
 <img src="process_image/test2_step6_visual_display.jpg" style="width:400px;height:260px;">
 
 #### Result Video
-Please click the youtube link
+Please click the youtube link or processed_project_video.mp4 in the local folder
+
 ![IMAGE ALT TEXT HERE](http://img.youtube.com/vi/9o7AWH9WIjo/0.jpg)]https://youtu.be/9o7AWH9WIjo)
 
 In the filter_color_and_gradient, the lightness channel in HSV color space is added to reduce the effect of shadows and color changes. The line sanity is also added to check if the line shape is changed within suitable range. In the video, the jitters is smaller than the previous submission.  
