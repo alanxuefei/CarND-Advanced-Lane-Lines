@@ -98,4 +98,10 @@ Finally lane curvature and vehicle position are added into the picture.
 <img src="process_image/test2_step6_visual_display.jpg" style="width:400px;height:260px;">
 
 #### Result Video
-<img src="processed_project_video.gif" style="width:400px;height:230px;">
+Please click the youtube link
+![IMAGE ALT TEXT HERE](http://img.youtube.com/vi/9o7AWH9WIjo/0.jpg)]https://youtu.be/9o7AWH9WIjo)
+
+In the filter_color_and_gradient, the lightness channel in HSV color space is added to reduce the effect of shadows and color changes. The line sanity is also added to check if the line shape is changed within suitable range. In the video, the jitters is smaller than the previous submission.  
+
+#### Discussion
+The project provides a framework to identify the lanes. Visually, the framework looks good. However, the results should be measured numerically. If the line sanity checks report errors more than 2 seconds, the car may need to stop rather use previous detections. In the video, there are still some small jitters. In the future, it is necessary to find out the reasons of these small jitters.
